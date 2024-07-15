@@ -619,6 +619,20 @@
                                     ),
                                 f
                             );
+                            return (
+                                "PageViewVSL" === t.type && (yield this.init(f.metaPixelIds)),
+                                (null !== (d = null === (c = f.metaPixelIds) || void 0 === c ? void 0 : c.length) && void 0 !== d ? d : 0) > 0 &&
+                                    this.metaEvent(
+                                        Object.assign(Object.assign({}, t), {
+                                            event: {
+                                                _id: g.event._id,
+                                                pageTitle: null !== (p = null === (u = t.event) || void 0 === u ? void 0 : u.pageTitle) && void 0 !== p ? p : null,
+                                                sourceUrl: null !== (h = null === (v = t.event) || void 0 === v ? void 0 : v.sourceUrl) && void 0 !== h ? h : null,
+                                            },
+                                        })
+                                    ),
+                                f
+                            );
                         });
                     }
                     static updateLead(t) {

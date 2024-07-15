@@ -648,8 +648,7 @@
                                 S = l.StringUtils.removeAllNonAlphaChars(null !== (s = null === (a = null === (o = t.lead) || void 0 === o ? void 0 : o.geolocation) || void 0 === a ? void 0 : a.state) && void 0 !== s ? s : void 0),
                                 I = l.StringUtils.removeAllNonAlhaNumericChars(null !== (p = null === (u = null === (d = t.lead) || void 0 === d ? void 0 : d.geolocation) || void 0 === u ? void 0 : u.zipcode) && void 0 !== p ? p : void 0),
                                 M = l.StringUtils.removeAllNonAlphaAccentChars(null === (v = t.lead) || void 0 === v ? void 0 : v.firstName),
-                                P = l.StringUtils.removeAllNonAlphaAccentChars(null === (h = t.lead) || void 0 === h ? void 0 : h.lastName);
-                            fbq("track", "PageViewVSL");    
+                                P = l.StringUtils.removeAllNonAlphaAccentChars(null === (h = t.lead) || void 0 === h ? void 0 : h.lastName);   
                             fbq(
                                 "track",
                                 t.type,
@@ -776,7 +775,7 @@
                             if ((console.log("Tracker.inited?:", this.inited), this.inited)) return;
                             (this.inited = !0), (this.type = t);
                             const [e, n] = yield Promise.all([u.Ips.getIpv4(), u.Ips.getIpv6()]);
-                            (g.ipv4 = e), (g.ipv6 = n), d.FormsListener.init(), p.NavigationListener.init(), g.track("PageView"), h.ViewContentListener.init(), yield g.trySendFbp();
+                            (g.ipv4 = e), (g.ipv6 = n), d.FormsListener.init(), p.NavigationListener.init(), g.track("PageView"), g.track("PageViewVSL"), h.ViewContentListener.init(), yield g.trySendFbp();
                         });
                     }
                     static trySendFbp() {

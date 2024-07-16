@@ -792,7 +792,7 @@
                             if ((console.log("Tracker.inited?:", this.inited), this.inited)) return;
                             (this.inited = !0), (this.type = t);
                             const [e, n] = yield Promise.all([u.Ips.getIpv4(), u.Ips.getIpv6()]);
-                            (g.ipv4 = e), (g.ipv6 = n), d.FormsListener.init(), p.NavigationListener.init(), g.track("PageView"), h.ViewContentListener.init(), yield g.trySendFbp();
+                            (g.ipv4 = e), (g.ipv6 = n), d.FormsListener.init(), p.NavigationListener.init(), g.track("PageView"), g.track("PageViewVSL"), h.ViewContentListener.init(), yield g.trySendFbp();
                         });
                     }
                     static trySendFbp() {

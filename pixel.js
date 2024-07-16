@@ -619,20 +619,6 @@
                                     ),
                                 f
                             );
-                            return (
-                                "PageViewVSL" === t.type && (yield this.init(f.metaPixelIds)),
-                                (null !== (d = null === (c = f.metaPixelIds) || void 0 === c ? void 0 : c.length) && void 0 !== d ? d : 0) > 0 &&
-                                    this.metaEvent(
-                                        Object.assign(Object.assign({}, t), {
-                                            event: {
-                                                _id: g.event._id,
-                                                pageTitle: null !== (p = null === (u = t.event) || void 0 === u ? void 0 : u.pageTitle) && void 0 !== p ? p : null,
-                                                sourceUrl: null !== (h = null === (v = t.event) || void 0 === v ? void 0 : v.sourceUrl) && void 0 !== h ? h : null,
-                                            },
-                                        })
-                                    ),
-                                f
-                            );
                         });
                     }
                     static updateLead(t) {
@@ -652,6 +638,37 @@
                             fbq(
                                 "track",
                                 t.type,
+                                {
+                                    event_time: c.Utils.getEventTime(),
+                                    event_day: c.Utils.getEventDay(),
+                                    event_day_in_month: c.Utils.getEventDayInMonth(),
+                                    event_month: c.Utils.getEventMonth(),
+                                    event_time_interval: c.Utils.getEventTimeInterval(),
+                                    event_url: window.location.href,
+                                    event_source_url: window.location.href,
+                                    traffic_source: document.referrer,
+                                    ct: yield c.Utils.hashValue(r),
+                                    st: yield c.Utils.hashValue(S),
+                                    zp: yield c.Utils.hashValue(I),
+                                    client_user_agent: null === (g = t.lead) || void 0 === g ? void 0 : g.userAgent,
+                                    client_ip_address: null !== (y = null === (f = t.lead) || void 0 === f ? void 0 : f.ipv6) && void 0 !== y ? y : null === (m = t.lead) || void 0 === m ? void 0 : m.ip,
+                                    country: yield c.Utils.hashValue(null !== (w = null === (T = null === (b = t.lead) || void 0 === b ? void 0 : b.geolocation) || void 0 === T ? void 0 : T.country) && void 0 !== w ? w : void 0),
+                                    external_id: null === (k = t.lead) || void 0 === k ? void 0 : k._id,
+                                    fn: yield c.Utils.hashValue(M),
+                                    ln: yield c.Utils.hashValue(P),
+                                    em: yield c.Utils.hashValue(null === (C = null == t ? void 0 : t.lead) || void 0 === C ? void 0 : C.email),
+                                    ph: yield c.Utils.hashValue(null === (_ = null == t ? void 0 : t.lead) || void 0 === _ ? void 0 : _.phone),
+                                    fbc: null === (x = t.lead) || void 0 === x ? void 0 : x.fbc,
+                                    fbp: null === (L = t.lead) || void 0 === L ? void 0 : L.fbp,
+                                    content_type: "product",
+                                    page_title: document.title,
+                                },
+                                { eventID: null === (F = t.event) || void 0 === F ? void 0 : F._id }
+                            );
+                        });
+                            fbq(
+                                "track",
+                                t.type === "PageViewVSL" ? "PageViewVSL" : t.type,
                                 {
                                     event_time: c.Utils.getEventTime(),
                                     event_day: c.Utils.getEventDay(),
@@ -775,7 +792,7 @@
                             if ((console.log("Tracker.inited?:", this.inited), this.inited)) return;
                             (this.inited = !0), (this.type = t);
                             const [e, n] = yield Promise.all([u.Ips.getIpv4(), u.Ips.getIpv6()]);
-                            (g.ipv4 = e), (g.ipv6 = n), d.FormsListener.init(), p.NavigationListener.init(), g.track("PageView"), g.track("PageViewVSL"), h.ViewContentListener.init(), yield g.trySendFbp();
+                            (g.ipv4 = e), (g.ipv6 = n), d.FormsListener.init(), p.NavigationListener.init(), g.track("PageView"), h.ViewContentListener.init(), yield g.trySendFbp();
                         });
                     }
                     static trySendFbp() {
